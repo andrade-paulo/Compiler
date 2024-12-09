@@ -1,0 +1,12 @@
+Pizza
+ and (hasTopping some CheeseTopping)
+ Individuals:
+ CheesyPizza1
+ Class: HighCaloriePizza
+ EquivalentTo:
+ Pizza
+ and (hasCaloricContent some xsd:integer[>= 400])
+ Class: InterestingPizza
+ EquivalentTo:
+ Pizza
+ and (hasTopping min 3 PizzaTopping)
