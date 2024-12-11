@@ -1,3 +1,4 @@
+Symbol - Token Type - Occurrences
 Class: - RESERVED_WORD - 17
 Customer - CLASS_NAME - 1
 EquivalentTo: - RESERVED_WORD - 8
@@ -9,7 +10,8 @@ some - QUANTIFIER - 21
 Pizza - CLASS_NAME - 12
 ) - SPECIAL_SYMBOL - 13
 hasPhone - PROPRIETY - 1
-xsd:string - NAMESPACE - 2
+xsd - NAMESPACE_SOURCE - 5
+string - NAMESPACE_TYPE - 2
 Individuals: - RESERVED_WORD - 8
 Customer1 - INDIVIDUAL_NAME - 1
 , - SPECIAL_SYMBOL - 55
@@ -34,7 +36,7 @@ Waiter2 - INDIVIDUAL_NAME - 1
 hasBase - PROPRIETY - 1
 PizzaBase - CLASS_NAME - 5
 hasCaloricContent - PROPRIETY - 3
-xsd:integer - NAMESPACE - 3
+integer - NAMESPACE_TYPE - 3
 DisjointClasses: - RESERVED_WORD - 7
 PizzaTopping - CLASS_NAME - 5
 CustomPizza1 - INDIVIDUAL_NAME - 1

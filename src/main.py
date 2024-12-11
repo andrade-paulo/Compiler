@@ -55,7 +55,13 @@ def analyser_menu(stdscr, symbol_table) -> str:
     stdscr.addstr(0, 0, "Analysing Tokens...")
     for i, token in enumerate(tokens):
         classified_token = lexical_analyser.classify_token(token)
-        symbol_table.add_symbol(token, classified_token)
+        if classified_token == "NAMESPACE":
+            source = token.split(":")[0]
+            type = token.split(":")[1]
+            symbol_table.add_symbol(source, "NAMESPACE_SOURCE")
+            symbol_table.add_symbol(type, "NAMESPACE_TYPE")
+        else:
+            symbol_table.add_symbol(token, classified_token)
 
     stdscr.addstr(1, 0, "Done! Press any key to continue...", curses.A_BOLD)
     stdscr.refresh()
