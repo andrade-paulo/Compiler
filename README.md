@@ -37,7 +37,7 @@ The project is structured as follows:
 ```
 .
 ├── docs
-│   ├── class_diagram.pdf
+│   ├── class_diagram.png
 ├── owl_files
 │   ├── example.owl
 │   └── example2.txt
