@@ -15,8 +15,11 @@ After intalling the requirements, you can put the **OWL code** you want to analy
 ## Running the Project
 The "Run" button of your IDE might not work properly as the relative paths could be different.
 To run the project, you can execute the `main.py` file using the terminal: 
-1. First, navigate to the project's root folder.
-2. Then, run the following command:
+1. First, navigate to `/src` folder:
+```
+cd src
+```
+2. Then, run the python file:
 ```
 python src/main.py
 ```
