@@ -37,7 +37,7 @@ def analyser_menu(stdscr, symbol_table) -> str:
 
     # Initialising Lexical Analyser
     try:
-        lexical_analyser = LA.LexicalAnalyser(f"../{file_name}")
+        lexical_analyser = LA.LexicalAnalyser(f"../owl_files/{file_name}")
     except FileNotFoundError:
         stdscr.addstr(0, 0, "File not found! Press any key to continue...", curses.A_BOLD)
         stdscr.refresh()
@@ -69,12 +69,13 @@ def report_menu(stdscr, symbol_table, file_name) -> None:
     stdscr.clear()
     stdscr.refresh()
 
-    stdscr.addstr(0, 0, f"Exporting Report to report_{file_name}.log...")
+    stdscr.addstr(0, 0, f"Exporting Report to reports/report_{file_name}.log...")
 
     # Writing file
-    with open(f"../log_{file_name}.log", "w") as file:
-        for symbol, value in symbol_table.get_table().items():
-            file.write(f"{symbol} -> {value}\n")
+    with open(f"../reports/log_{file_name}.log", "w") as file:
+        file.write("Symbol - Token Type - Occurrences\n")
+        for symbol, token in symbol_table.get_table().items():
+            file.write(f"{symbol} - {token.get_token_type()} - {token.get_occurrences()}\n")
     
     stdscr.addstr(1, 0, "Done! Press any key to continue...", curses.A_BOLD)
     stdscr.refresh()
@@ -84,7 +85,7 @@ def report_menu(stdscr, symbol_table, file_name) -> None:
 
 def main_menu(stdscr):
     # Menu options (Analyse File, Report, Exit)
-    menu = ["Analyse File", "Export Log", "Exit"]
+    menu = ["Analyse File", "Export Report", "Exit"]
 
     # Current selected option
     current_row = 0

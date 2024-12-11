@@ -6,10 +6,10 @@ class LexicalAnalyser:
     RESERVED_WORDS = {
         "some": "QUANTIFIER", "all": "QUANTIFIER", "value": "QUANTIFIER", "min": "QUANTIFIER", "max": "QUANTIFIER", "exactly": "QUANTIFIER", 
         "that": "LOGICAL", "not": "LOGICAL", "and": "LOGICAL", "or": "LOGICAL", 
-        "Class": "RESERVED_WORD", "EquivalentTo": "RESERVED_WORD", "Individuals": "RESERVED_WORD", "SubClassOf": "RESERVED_WORD", "DisjointClasses": "RESERVED_WORD"
+        "Class:": "RESERVED_WORD", "EquivalentTo:": "RESERVED_WORD", "Individuals:": "RESERVED_WORD", "SubClassOf:": "RESERVED_WORD", "DisjointClasses:": "RESERVED_WORD"
     }
 
-    SPECIAL_SYMBOLS = ["(", ")", "{", "}", "[", "]", ",", ">", "<", "=", ":"]
+    SPECIAL_SYMBOLS = ["(", ")", "{", "}", "[", "]", ",", ">", "<", "="]
 
     REGEX_MAP = {
         "CLASS_NAME": r"[A-Z][a-zA-Z_]*",
