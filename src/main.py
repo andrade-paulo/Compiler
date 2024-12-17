@@ -53,6 +53,7 @@ def analyser_menu(stdscr, symbol_table) -> str:
 
     # Adding tokens to the Symbol Table
     stdscr.addstr(0, 0, "Analysing Tokens...")
+    log = []
     for i, token in enumerate(tokens):
         classified_token = lexical_analyser.classify_token(token)
         if classified_token == "NAMESPACE":
@@ -62,6 +63,13 @@ def analyser_menu(stdscr, symbol_table) -> str:
             symbol_table.add_symbol(type, "NAMESPACE_TYPE")
         else:
             symbol_table.add_symbol(token, classified_token)
+        log.append(f"{i+1} - {token} - {classified_token}")
+    
+    # Writing log
+    with open(f"../reports/log_{file_name}.log", "w") as file:
+        file.write("Token - Classification\n")
+        for line in log:
+            file.write(f"{line}\n")
 
     stdscr.addstr(1, 0, "Done! Press any key to continue...", curses.A_BOLD)
     stdscr.refresh()
@@ -75,10 +83,10 @@ def report_menu(stdscr, symbol_table, file_name) -> None:
     stdscr.clear()
     stdscr.refresh()
 
-    stdscr.addstr(0, 0, f"Exporting Report to reports/report_{file_name}.log...")
+    stdscr.addstr(0, 0, f"Exporting Report to reports/report_{file_name}.txt...")
 
     # Writing file
-    with open(f"../reports/log_{file_name}.log", "w") as file:
+    with open(f"../reports/report_{file_name}.txt", "w") as file:
         file.write("Symbol - Token Type - Occurrences\n")
         for symbol, token in symbol_table.get_table().items():
             file.write(f"{symbol} - {token.get_token_type()} - {token.get_occurrences()}\n")

@@ -12,7 +12,8 @@ Class: - RESERVED_WORD - 2
 HighCaloriePizza - CLASS_NAME - 1
 EquivalentTo: - RESERVED_WORD - 2
 hasCaloricContent - PROPRIETY - 1
-xsd:integer - NAMESPACE - 1
+xsd - NAMESPACE_SOURCE - 1
+integer - NAMESPACE_TYPE - 1
 [ - SPECIAL_SYMBOL - 1
 > - SPECIAL_SYMBOL - 1
 = - SPECIAL_SYMBOL - 1
