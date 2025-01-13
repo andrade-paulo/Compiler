@@ -6,10 +6,18 @@ This repository contains a implementation of a Lexical Analyzer for OWL (Web Ont
 The setup and running instructions are pretty straightforward. You can follow the steps below to get the project up and running.
 
 ## Setup
-All the requirements are in the `requirements.txt` file. To install them, run the following command:
+All the requirements are listed into each SO requirement file. To install them, run the following command:
+
+Windows:
 ```
-pip install -r requirements.txt
+pip install -r requirements-win.txt
 ```
+
+Linux:
+```
+pip install -r requirements-linux.txt
+```
+
 After intalling the requirements, you can put the **OWL code** you want to analyze in the `owl_files/` folder. The file must be named with an `.owl` or `.txt` extension.
 
 ## Running the Project
@@ -24,7 +32,7 @@ cd src
 python src/main.py
 ```
 
-## Usage
+## User Interface
 The program is a TUI (Text User Interface) that will guide you through the process of analyzing an OWL file.
 
 The first menu gives you 3 options:
