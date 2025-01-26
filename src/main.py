@@ -1,4 +1,5 @@
 import LexicalAnalyser as LA
+import SyntacticAnalyser as SA
 import SymbolTable as ST
 
 import curses
@@ -39,6 +40,7 @@ def analyser_menu(stdscr, symbol_table) -> str:
     # Initialising Lexical Analyser
     try:
         lexical_analyser = LA.LexicalAnalyser(f"../owl_files/{file_name}")
+        syntatic_analyser = SA.SyntacticAnalyser(f"../owl_files/{file_name}")
     except FileNotFoundError:
         stdscr.addstr(0, 0, "File not found! Press any key to continue...", curses.A_BOLD)
         stdscr.refresh()
@@ -48,6 +50,9 @@ def analyser_menu(stdscr, symbol_table) -> str:
 
     # Getting tokens from the file
     tokens_lexer = lexical_analyser.analyse_file(symbol_table)
+    
+    print("\n----- Syntax Analysis -----")
+    syntatic_analyser.analyse_file()
 
     stdscr.clear()
     stdscr.refresh()

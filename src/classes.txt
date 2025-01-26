@@ -1,0 +1,6 @@
+ConditionalClaim - Class
+ -> AmericanaHotPizza1 - INDIVIDUALS
+ -> IntrinsicMode - SUPCLASS
+DigitalAsset - Class
+ -> Coisa - DISJOINT
+ -> Resource - SUPCLASS

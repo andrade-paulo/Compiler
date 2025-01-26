@@ -1,0 +1,556 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ALL
+    BEQ
+    BIG
+    EQUIVALENT
+    ID
+    LBRACKET
+    LCURLY
+    LEQ
+    LESS
+    NAMESPACE
+    RBRACKET
+    RCURLY
+
+Grammar
+
+Rule 0     S' -> ontology
+Rule 1     ontology -> primitive_class_header
+Rule 2     ontology -> primitive_class_header ontology
+Rule 3     primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression
+Rule 4     primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header
+Rule 5     primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression
+Rule 6     primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression
+Rule 7     primitive_class_expression -> DISJOINT disjoint_expression
+Rule 8     primitive_class_expression -> INDIVIDUALS individuals_expression
+Rule 9     subclass_header -> CLASS_NAME
+Rule 10    subclass_header -> CLASS_NAME COMMA subclass_expression
+Rule 11    subclass_expression -> PROPRIETY SOME CLASS_NAME
+Rule 12    subclass_expression -> PROPRIETY ONLY CLASS_NAME
+Rule 13    subclass_expression -> subclass_expression LOGICAL subclass_expression
+Rule 14    subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+Rule 15    subclass_expression -> LPAR subclass_expression RPAR
+Rule 16    subclass_expression -> subclass_expression COMMA subclass_expression
+Rule 17    disjoint_expression -> CLASS_NAME
+Rule 18    disjoint_expression -> disjoint_expression COMMA disjoint_expression
+Rule 19    individuals_expression -> INDIVIDUAL_NAME
+
+Terminals, with rules where they appear
+
+ALL                  : 
+BEQ                  : 
+BIG                  : 
+CLASS                : 3 4
+CLASS_NAME           : 3 4 9 10 11 12 14 17
+COMMA                : 10 16 18
+DISJOINT             : 5 7
+EQUIVALENT           : 
+ID                   : 
+INDIVIDUALS          : 6 8
+INDIVIDUAL_NAME      : 19
+LBRACKET             : 
+LCURLY               : 
+LEQ                  : 
+LESS                 : 
+LOGICAL              : 13
+LPAR                 : 15
+NAMESPACE            : 
+NUMBER               : 14
+ONLY                 : 12
+PROPRIETY            : 11 12 14
+QUANTIFIER           : 14
+RBRACKET             : 
+RCURLY               : 
+RPAR                 : 15
+SOME                 : 11
+SUBCLASS             : 3 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+disjoint_expression  : 5 7 18 18
+individuals_expression : 6 8
+ontology             : 2 0
+primitive_class_expression : 3 4 5 6
+primitive_class_header : 1 2
+subclass_expression  : 10 13 13 15 16 16
+subclass_header      : 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . ontology
+    (1) ontology -> . primitive_class_header
+    (2) ontology -> . primitive_class_header ontology
+    (3) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression
+    (4) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header
+
+    CLASS           shift and go to state 3
+
+    ontology                       shift and go to state 1
+    primitive_class_header         shift and go to state 2
+
+state 1
+
+    (0) S' -> ontology .
+
+
+
+state 2
+
+    (1) ontology -> primitive_class_header .
+    (2) ontology -> primitive_class_header . ontology
+    (1) ontology -> . primitive_class_header
+    (2) ontology -> . primitive_class_header ontology
+    (3) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression
+    (4) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header
+
+    $end            reduce using rule 1 (ontology -> primitive_class_header .)
+    CLASS           shift and go to state 3
+
+    primitive_class_header         shift and go to state 2
+    ontology                       shift and go to state 4
+
+state 3
+
+    (3) primitive_class_header -> CLASS . CLASS_NAME SUBCLASS subclass_header primitive_class_expression
+    (4) primitive_class_header -> CLASS . CLASS_NAME SUBCLASS primitive_class_expression subclass_header
+
+    CLASS_NAME      shift and go to state 5
+
+
+state 4
+
+    (2) ontology -> primitive_class_header ontology .
+
+    $end            reduce using rule 2 (ontology -> primitive_class_header ontology .)
+
+
+state 5
+
+    (3) primitive_class_header -> CLASS CLASS_NAME . SUBCLASS subclass_header primitive_class_expression
+    (4) primitive_class_header -> CLASS CLASS_NAME . SUBCLASS primitive_class_expression subclass_header
+
+    SUBCLASS        shift and go to state 6
+
+
+state 6
+
+    (3) primitive_class_header -> CLASS CLASS_NAME SUBCLASS . subclass_header primitive_class_expression
+    (4) primitive_class_header -> CLASS CLASS_NAME SUBCLASS . primitive_class_expression subclass_header
+    (9) subclass_header -> . CLASS_NAME
+    (10) subclass_header -> . CLASS_NAME COMMA subclass_expression
+    (5) primitive_class_expression -> . DISJOINT disjoint_expression primitive_class_expression
+    (6) primitive_class_expression -> . INDIVIDUALS individuals_expression primitive_class_expression
+    (7) primitive_class_expression -> . DISJOINT disjoint_expression
+    (8) primitive_class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS_NAME      shift and go to state 7
+    DISJOINT        shift and go to state 10
+    INDIVIDUALS     shift and go to state 11
+
+    subclass_header                shift and go to state 8
+    primitive_class_expression     shift and go to state 9
+
+state 7
+
+    (9) subclass_header -> CLASS_NAME .
+    (10) subclass_header -> CLASS_NAME . COMMA subclass_expression
+
+    DISJOINT        reduce using rule 9 (subclass_header -> CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 9 (subclass_header -> CLASS_NAME .)
+    CLASS           reduce using rule 9 (subclass_header -> CLASS_NAME .)
+    $end            reduce using rule 9 (subclass_header -> CLASS_NAME .)
+    COMMA           shift and go to state 12
+
+
+state 8
+
+    (3) primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header . primitive_class_expression
+    (5) primitive_class_expression -> . DISJOINT disjoint_expression primitive_class_expression
+    (6) primitive_class_expression -> . INDIVIDUALS individuals_expression primitive_class_expression
+    (7) primitive_class_expression -> . DISJOINT disjoint_expression
+    (8) primitive_class_expression -> . INDIVIDUALS individuals_expression
+
+    DISJOINT        shift and go to state 10
+    INDIVIDUALS     shift and go to state 11
+
+    primitive_class_expression     shift and go to state 13
+
+state 9
+
+    (4) primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression . subclass_header
+    (9) subclass_header -> . CLASS_NAME
+    (10) subclass_header -> . CLASS_NAME COMMA subclass_expression
+
+    CLASS_NAME      shift and go to state 7
+
+    subclass_header                shift and go to state 14
+
+state 10
+
+    (5) primitive_class_expression -> DISJOINT . disjoint_expression primitive_class_expression
+    (7) primitive_class_expression -> DISJOINT . disjoint_expression
+    (17) disjoint_expression -> . CLASS_NAME
+    (18) disjoint_expression -> . disjoint_expression COMMA disjoint_expression
+
+    CLASS_NAME      shift and go to state 16
+
+    disjoint_expression            shift and go to state 15
+
+state 11
+
+    (6) primitive_class_expression -> INDIVIDUALS . individuals_expression primitive_class_expression
+    (8) primitive_class_expression -> INDIVIDUALS . individuals_expression
+    (19) individuals_expression -> . INDIVIDUAL_NAME
+
+    INDIVIDUAL_NAME shift and go to state 18
+
+    individuals_expression         shift and go to state 17
+
+state 12
+
+    (10) subclass_header -> CLASS_NAME COMMA . subclass_expression
+    (11) subclass_expression -> . PROPRIETY SOME CLASS_NAME
+    (12) subclass_expression -> . PROPRIETY ONLY CLASS_NAME
+    (13) subclass_expression -> . subclass_expression LOGICAL subclass_expression
+    (14) subclass_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (15) subclass_expression -> . LPAR subclass_expression RPAR
+    (16) subclass_expression -> . subclass_expression COMMA subclass_expression
+
+    PROPRIETY       shift and go to state 20
+    LPAR            shift and go to state 21
+
+    subclass_expression            shift and go to state 19
+
+state 13
+
+    (3) primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression .
+
+    CLASS           reduce using rule 3 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression .)
+    $end            reduce using rule 3 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression .)
+
+
+state 14
+
+    (4) primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header .
+
+    CLASS           reduce using rule 4 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header .)
+    $end            reduce using rule 4 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header .)
+
+
+state 15
+
+    (5) primitive_class_expression -> DISJOINT disjoint_expression . primitive_class_expression
+    (7) primitive_class_expression -> DISJOINT disjoint_expression .
+    (18) disjoint_expression -> disjoint_expression . COMMA disjoint_expression
+    (5) primitive_class_expression -> . DISJOINT disjoint_expression primitive_class_expression
+    (6) primitive_class_expression -> . INDIVIDUALS individuals_expression primitive_class_expression
+    (7) primitive_class_expression -> . DISJOINT disjoint_expression
+    (8) primitive_class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS_NAME      reduce using rule 7 (primitive_class_expression -> DISJOINT disjoint_expression .)
+    CLASS           reduce using rule 7 (primitive_class_expression -> DISJOINT disjoint_expression .)
+    $end            reduce using rule 7 (primitive_class_expression -> DISJOINT disjoint_expression .)
+    COMMA           shift and go to state 23
+    DISJOINT        shift and go to state 10
+    INDIVIDUALS     shift and go to state 11
+
+    primitive_class_expression     shift and go to state 22
+
+state 16
+
+    (17) disjoint_expression -> CLASS_NAME .
+
+    COMMA           reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+    DISJOINT        reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+    CLASS_NAME      reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+    CLASS           reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+    $end            reduce using rule 17 (disjoint_expression -> CLASS_NAME .)
+
+
+state 17
+
+    (6) primitive_class_expression -> INDIVIDUALS individuals_expression . primitive_class_expression
+    (8) primitive_class_expression -> INDIVIDUALS individuals_expression .
+    (5) primitive_class_expression -> . DISJOINT disjoint_expression primitive_class_expression
+    (6) primitive_class_expression -> . INDIVIDUALS individuals_expression primitive_class_expression
+    (7) primitive_class_expression -> . DISJOINT disjoint_expression
+    (8) primitive_class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS_NAME      reduce using rule 8 (primitive_class_expression -> INDIVIDUALS individuals_expression .)
+    CLASS           reduce using rule 8 (primitive_class_expression -> INDIVIDUALS individuals_expression .)
+    $end            reduce using rule 8 (primitive_class_expression -> INDIVIDUALS individuals_expression .)
+    DISJOINT        shift and go to state 10
+    INDIVIDUALS     shift and go to state 11
+
+    primitive_class_expression     shift and go to state 24
+
+state 18
+
+    (19) individuals_expression -> INDIVIDUAL_NAME .
+
+    DISJOINT        reduce using rule 19 (individuals_expression -> INDIVIDUAL_NAME .)
+    INDIVIDUALS     reduce using rule 19 (individuals_expression -> INDIVIDUAL_NAME .)
+    CLASS_NAME      reduce using rule 19 (individuals_expression -> INDIVIDUAL_NAME .)
+    CLASS           reduce using rule 19 (individuals_expression -> INDIVIDUAL_NAME .)
+    $end            reduce using rule 19 (individuals_expression -> INDIVIDUAL_NAME .)
+
+
+state 19
+
+    (10) subclass_header -> CLASS_NAME COMMA subclass_expression .
+    (13) subclass_expression -> subclass_expression . LOGICAL subclass_expression
+    (16) subclass_expression -> subclass_expression . COMMA subclass_expression
+
+    DISJOINT        reduce using rule 10 (subclass_header -> CLASS_NAME COMMA subclass_expression .)
+    INDIVIDUALS     reduce using rule 10 (subclass_header -> CLASS_NAME COMMA subclass_expression .)
+    CLASS           reduce using rule 10 (subclass_header -> CLASS_NAME COMMA subclass_expression .)
+    $end            reduce using rule 10 (subclass_header -> CLASS_NAME COMMA subclass_expression .)
+    LOGICAL         shift and go to state 26
+    COMMA           shift and go to state 25
+
+
+state 20
+
+    (11) subclass_expression -> PROPRIETY . SOME CLASS_NAME
+    (12) subclass_expression -> PROPRIETY . ONLY CLASS_NAME
+    (14) subclass_expression -> PROPRIETY . QUANTIFIER NUMBER CLASS_NAME
+
+    SOME            shift and go to state 27
+    ONLY            shift and go to state 28
+    QUANTIFIER      shift and go to state 29
+
+
+state 21
+
+    (15) subclass_expression -> LPAR . subclass_expression RPAR
+    (11) subclass_expression -> . PROPRIETY SOME CLASS_NAME
+    (12) subclass_expression -> . PROPRIETY ONLY CLASS_NAME
+    (13) subclass_expression -> . subclass_expression LOGICAL subclass_expression
+    (14) subclass_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (15) subclass_expression -> . LPAR subclass_expression RPAR
+    (16) subclass_expression -> . subclass_expression COMMA subclass_expression
+
+    PROPRIETY       shift and go to state 20
+    LPAR            shift and go to state 21
+
+    subclass_expression            shift and go to state 30
+
+state 22
+
+    (5) primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression .
+
+    CLASS_NAME      reduce using rule 5 (primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression .)
+    CLASS           reduce using rule 5 (primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression .)
+    $end            reduce using rule 5 (primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression .)
+
+
+state 23
+
+    (18) disjoint_expression -> disjoint_expression COMMA . disjoint_expression
+    (17) disjoint_expression -> . CLASS_NAME
+    (18) disjoint_expression -> . disjoint_expression COMMA disjoint_expression
+
+    CLASS_NAME      shift and go to state 16
+
+    disjoint_expression            shift and go to state 31
+
+state 24
+
+    (6) primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression .
+
+    CLASS_NAME      reduce using rule 6 (primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression .)
+    CLASS           reduce using rule 6 (primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression .)
+    $end            reduce using rule 6 (primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression .)
+
+
+state 25
+
+    (16) subclass_expression -> subclass_expression COMMA . subclass_expression
+    (11) subclass_expression -> . PROPRIETY SOME CLASS_NAME
+    (12) subclass_expression -> . PROPRIETY ONLY CLASS_NAME
+    (13) subclass_expression -> . subclass_expression LOGICAL subclass_expression
+    (14) subclass_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (15) subclass_expression -> . LPAR subclass_expression RPAR
+    (16) subclass_expression -> . subclass_expression COMMA subclass_expression
+
+    PROPRIETY       shift and go to state 20
+    LPAR            shift and go to state 21
+
+    subclass_expression            shift and go to state 32
+
+state 26
+
+    (13) subclass_expression -> subclass_expression LOGICAL . subclass_expression
+    (11) subclass_expression -> . PROPRIETY SOME CLASS_NAME
+    (12) subclass_expression -> . PROPRIETY ONLY CLASS_NAME
+    (13) subclass_expression -> . subclass_expression LOGICAL subclass_expression
+    (14) subclass_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (15) subclass_expression -> . LPAR subclass_expression RPAR
+    (16) subclass_expression -> . subclass_expression COMMA subclass_expression
+
+    PROPRIETY       shift and go to state 20
+    LPAR            shift and go to state 21
+
+    subclass_expression            shift and go to state 33
+
+state 27
+
+    (11) subclass_expression -> PROPRIETY SOME . CLASS_NAME
+
+    CLASS_NAME      shift and go to state 34
+
+
+state 28
+
+    (12) subclass_expression -> PROPRIETY ONLY . CLASS_NAME
+
+    CLASS_NAME      shift and go to state 35
+
+
+state 29
+
+    (14) subclass_expression -> PROPRIETY QUANTIFIER . NUMBER CLASS_NAME
+
+    NUMBER          shift and go to state 36
+
+
+state 30
+
+    (15) subclass_expression -> LPAR subclass_expression . RPAR
+    (13) subclass_expression -> subclass_expression . LOGICAL subclass_expression
+    (16) subclass_expression -> subclass_expression . COMMA subclass_expression
+
+    RPAR            shift and go to state 37
+    LOGICAL         shift and go to state 26
+    COMMA           shift and go to state 25
+
+
+state 31
+
+    (18) disjoint_expression -> disjoint_expression COMMA disjoint_expression .
+    (18) disjoint_expression -> disjoint_expression . COMMA disjoint_expression
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    DISJOINT        reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .)
+    INDIVIDUALS     reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .)
+    CLASS_NAME      reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .)
+    CLASS           reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .)
+    $end            reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .)
+    COMMA           shift and go to state 23
+
+  ! COMMA           [ reduce using rule 18 (disjoint_expression -> disjoint_expression COMMA disjoint_expression .) ]
+
+
+state 32
+
+    (16) subclass_expression -> subclass_expression COMMA subclass_expression .
+    (13) subclass_expression -> subclass_expression . LOGICAL subclass_expression
+    (16) subclass_expression -> subclass_expression . COMMA subclass_expression
+
+  ! shift/reduce conflict for LOGICAL resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+    DISJOINT        reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .)
+    INDIVIDUALS     reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .)
+    CLASS           reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .)
+    $end            reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .)
+    RPAR            reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .)
+    LOGICAL         shift and go to state 26
+    COMMA           shift and go to state 25
+
+  ! LOGICAL         [ reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .) ]
+  ! COMMA           [ reduce using rule 16 (subclass_expression -> subclass_expression COMMA subclass_expression .) ]
+
+
+state 33
+
+    (13) subclass_expression -> subclass_expression LOGICAL subclass_expression .
+    (13) subclass_expression -> subclass_expression . LOGICAL subclass_expression
+    (16) subclass_expression -> subclass_expression . COMMA subclass_expression
+
+  ! shift/reduce conflict for LOGICAL resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+    DISJOINT        reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .)
+    INDIVIDUALS     reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .)
+    CLASS           reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .)
+    $end            reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .)
+    RPAR            reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .)
+    LOGICAL         shift and go to state 26
+    COMMA           shift and go to state 25
+
+  ! LOGICAL         [ reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .) ]
+  ! COMMA           [ reduce using rule 13 (subclass_expression -> subclass_expression LOGICAL subclass_expression .) ]
+
+
+state 34
+
+    (11) subclass_expression -> PROPRIETY SOME CLASS_NAME .
+
+    LOGICAL         reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    COMMA           reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    DISJOINT        reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    CLASS           reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    $end            reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+    RPAR            reduce using rule 11 (subclass_expression -> PROPRIETY SOME CLASS_NAME .)
+
+
+state 35
+
+    (12) subclass_expression -> PROPRIETY ONLY CLASS_NAME .
+
+    LOGICAL         reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    COMMA           reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    DISJOINT        reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    CLASS           reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    $end            reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+    RPAR            reduce using rule 12 (subclass_expression -> PROPRIETY ONLY CLASS_NAME .)
+
+
+state 36
+
+    (14) subclass_expression -> PROPRIETY QUANTIFIER NUMBER . CLASS_NAME
+
+    CLASS_NAME      shift and go to state 38
+
+
+state 37
+
+    (15) subclass_expression -> LPAR subclass_expression RPAR .
+
+    LOGICAL         reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    COMMA           reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    DISJOINT        reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    INDIVIDUALS     reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    CLASS           reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    $end            reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+    RPAR            reduce using rule 15 (subclass_expression -> LPAR subclass_expression RPAR .)
+
+
+state 38
+
+    (14) subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .
+
+    LOGICAL         reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    COMMA           reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    DISJOINT        reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    CLASS           reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    $end            reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    RPAR            reduce using rule 14 (subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMMA in state 31 resolved as shift
+WARNING: shift/reduce conflict for LOGICAL in state 32 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 32 resolved as shift
+WARNING: shift/reduce conflict for LOGICAL in state 33 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 33 resolved as shift
