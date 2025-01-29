@@ -1,0 +1,10 @@
+Class: MargheritaPizza 
+     EquivalentTo:
+        Pizza
+        and (hasTestando some (hasSpiciness value Hot))
+    
+      SubClassOf: 
+          NamedPizza, 
+          hasTopping some MozzarellaTopping,
+          hasTopping some TomatoTopping,
+          hasTopping only (MozzarellaTopping) 

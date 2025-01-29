@@ -1,9 +1,11 @@
 import LexicalAnalyser as LA
+import SyntacticAnalyser as SA
 import SymbolTable as ST
 
 import curses
 from curses import wrapper
 import os
+import ply.lex as lex
 
 
 def analyser_menu(stdscr, symbol_table) -> str:
@@ -38,6 +40,7 @@ def analyser_menu(stdscr, symbol_table) -> str:
     # Initialising Lexical Analyser
     try:
         lexical_analyser = LA.LexicalAnalyser(f"../owl_files/{file_name}")
+        syntatic_analyser = SA.SyntacticAnalyser(f"../owl_files/{file_name}")
     except FileNotFoundError:
         stdscr.addstr(0, 0, "File not found! Press any key to continue...", curses.A_BOLD)
         stdscr.refresh()
@@ -46,31 +49,14 @@ def analyser_menu(stdscr, symbol_table) -> str:
         return
 
     # Getting tokens from the file
-    tokens = lexical_analyser.analyse_file()
+    tokens_lexer = lexical_analyser.analyse_file(symbol_table)
+    
+    print("\n----- Syntax Analysis -----")
+    syntatic_analyser.analyse_file()
 
     stdscr.clear()
     stdscr.refresh()
-
-    # Adding tokens to the Symbol Table
-    stdscr.addstr(0, 0, "Analysing Tokens...")
-    log = []
-    for i, token in enumerate(tokens):
-        classified_token = lexical_analyser.classify_token(token)
-        if classified_token == "NAMESPACE":
-            source = token.split(":")[0]
-            type = token.split(":")[1]
-            symbol_table.add_symbol(source, "NAMESPACE_SOURCE")
-            symbol_table.add_symbol(type, "NAMESPACE_TYPE")
-        else:
-            symbol_table.add_symbol(token, classified_token)
-        log.append(f"{i+1} - {token} - {classified_token}")
     
-    # Writing log
-    with open(f"../reports/log_{file_name}.log", "w") as file:
-        file.write("Token - Classification\n")
-        for line in log:
-            file.write(f"{line}\n")
-
     stdscr.addstr(1, 0, "Done! Press any key to continue...", curses.A_BOLD)
     stdscr.refresh()
 
@@ -138,6 +124,7 @@ def main_menu(stdscr):
             current_row += 1
         elif key == curses.KEY_ENTER or key in [10, 13]:
             if current_row == 0:
+                symbol_table = ST.SymbolTable()  # Reset Symbol Table
                 file_name = analyser_menu(stdscr, symbol_table)
             elif current_row == 1:
                 report_menu(stdscr, symbol_table, file_name)

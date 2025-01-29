@@ -1,0 +1,28 @@
+Class: DigitalAsset
+    EquivalentTo:
+        Coisinha
+
+    SubClassOf: 
+        Resource,
+        historicallyDependsOn some OfferorUnconditionalAgreement
+
+    DisjointWith:
+        Uiui
+
+    Individuals:
+        Somteste1, Conditional2
+
+
+Class: ConditionalClaim
+        
+    SubClassOf: 
+        IntrinsicMode,
+        historicallyDependsOn min 1 MetadataRetrival,
+        inheresIn exactly 1 Teste,
+        externallyDependsOn exactly 1 DataSupplier
+
+    DisjointWith:
+        Eita
+
+    Individuals:
+        TesteSom1, DigitalAsset2

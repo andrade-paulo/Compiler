@@ -14,6 +14,7 @@
  Customer7,
  Customer8,
  Customer9
+
  Class: Employee
  SubClassOf:
  Person
@@ -23,6 +24,7 @@
  Manager1,
  Waiter1,
  Waiter2
+
  Class: Pizza
  SubClassOf:
  hasBase some PizzaBase,
@@ -32,24 +34,29 @@
  Individuals:
  CustomPizza1,
  CustomPizza2
+
  Class: CheesyPizza
  EquivalentTo:
 Pizza
  and (hasTopping some CheeseTopping)
  Individuals:
  CheesyPizza1
+
  Class: HighCaloriePizza
  EquivalentTo:
  Pizza
  and (hasCaloricContent some xsd:integer[>= 400])
+ 
  Class: InterestingPizza
  EquivalentTo:
  Pizza
  and (hasTopping min 3 PizzaTopping)
+ 
  Class: LowCaloriePizza
  EquivalentTo:
  Pizza
  and (hasCaloricContent some xsd:integer[< 400])
+
  Class: NamedPizza
  SubClassOf:
  Pizza
@@ -67,6 +74,7 @@ Pizza
  AmericanaHotPizza2,
  AmericanaHotPizza3,
  ChicagoAmericanaHotPizza1
+ 
  Class: AmericanaPizza
 SubClassOf:
  NamedPizza,

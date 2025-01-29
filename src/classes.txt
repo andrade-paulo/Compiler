@@ -1,0 +1,41 @@
+Log (29/01/2025 01:50:04)
+2 Valid Classes
+
+Class: DigitalAsset
+  Primary Class Type: Defined Class
+  Secondary Types: []
+  Subclass Of: Resource
+  Equivalent To: ['Coisinha']
+  Disjoint With: ['Uiui']
+  Individous: ['Conditional2', 'Somteste1']
+  Properties: 
+    Property: historicallyDependsOn
+    Operator Token: some
+    Cardinality: None
+    Class Name: OfferorUnconditionalAgreement
+
+
+Class: ConditionalClaim
+  Primary Class Type: Primitive Class
+  Secondary Types: []
+  Subclass Of: IntrinsicMode
+  Equivalent To: []
+  Disjoint With: ['Eita']
+  Individous: ['DigitalAsset2', 'TesteSom1']
+  Properties: 
+    Property: externallyDependsOn
+    Operator Token: exactly
+    Cardinality: 1
+    Class Name: DataSupplier
+
+    Property: inheresIn
+    Operator Token: exactly
+    Cardinality: 1
+    Class Name: Teste
+
+    Property: historicallyDependsOn
+    Operator Token: min
+    Cardinality: 1
+    Class Name: MetadataRetrival
+
+

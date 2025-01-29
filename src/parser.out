@@ -1,0 +1,1117 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ALL
+    BEQ
+    BIG
+    ID
+    LBRACKET
+    LCURLY
+    LEQ
+    LESS
+    NAMESPACE
+    RBRACKET
+    RCURLY
+
+Grammar
+
+Rule 0     S' -> ontology
+Rule 1     ontology -> primitive_class_header
+Rule 2     ontology -> primitive_class_header ontology
+Rule 3     ontology -> defined_class_header
+Rule 4     ontology -> defined_class_header ontology
+Rule 5     primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header
+Rule 6     primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header class_expression
+Rule 7     defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression
+Rule 8     defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header
+Rule 9     defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression
+Rule 10    defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+Rule 11    defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression
+Rule 12    defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+Rule 13    class_expression -> DISJOINT disjoint_expression INDIVIDUALS individuals_expression
+Rule 14    class_expression -> DISJOINT disjoint_expression
+Rule 15    class_expression -> INDIVIDUALS individuals_expression
+Rule 16    equivalent_expression -> CLASS_NAME
+Rule 17    equivalent_expression -> CLASS_NAME COMMA equivalent_expression
+Rule 18    equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR
+Rule 19    subclass_header -> CLASS_NAME
+Rule 20    subclass_header -> CLASS_NAME COMMA property_expression
+Rule 21    property_expression -> PROPRIETY SOME CLASS_NAME
+Rule 22    property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression
+Rule 23    property_expression -> PROPRIETY SOME LPAR property_expression RPAR
+Rule 24    property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR
+Rule 25    property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+Rule 26    property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+Rule 27    property_expression -> PROPRIETY QUANTIFIER CLASS_NAME
+Rule 28    property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+Rule 29    property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+Rule 30    property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+Rule 31    property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+Rule 32    property_expression -> PROPRIETY ONLY CLASS_NAME
+Rule 33    property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR
+Rule 34    closure_classes -> CLASS_NAME
+Rule 35    closure_classes -> CLASS_NAME LOGICAL closure_classes
+Rule 36    closure_classes -> CLASS_NAME COMMA closure_classes
+Rule 37    disjoint_expression -> CLASS_NAME
+Rule 38    disjoint_expression -> CLASS_NAME COMMA disjoint_expression
+Rule 39    individuals_expression -> INDIVIDUAL_NAME
+Rule 40    individuals_expression -> INDIVIDUAL_NAME COMMA individuals_expression
+
+Terminals, with rules where they appear
+
+ALL                  : 
+BEQ                  : 
+BIG                  : 
+CLASS                : 5 6 7 8 9 10 11 12
+CLASS_NAME           : 5 6 7 8 9 10 11 12 16 17 18 19 20 21 22 24 25 27 28 29 30 31 32 34 35 36 37 38
+COMMA                : 17 20 22 29 36 38 40
+DISJOINT             : 13 14
+EQUIVALENT           : 7 8 9 10 11 12
+ID                   : 
+INDIVIDUALS          : 13 15
+INDIVIDUAL_NAME      : 39 40
+LBRACKET             : 
+LCURLY               : 
+LEQ                  : 
+LESS                 : 
+LOGICAL              : 18 25 31 35
+LPAR                 : 18 23 24 25 26 26 30 31 33
+NAMESPACE            : 
+NUMBER               : 28 29 30 31
+ONLY                 : 32 33
+PROPRIETY            : 21 22 23 24 25 26 27 28 29 30 31 32 33
+QUANTIFIER           : 27 28 29 30 31
+RBRACKET             : 
+RCURLY               : 
+RPAR                 : 18 23 24 25 26 26 30 31 33
+SOME                 : 21 22 23 24 25 26
+SUBCLASS             : 5 6 8 10 11 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+class_expression     : 6 9 10 12
+closure_classes      : 33 35 36
+defined_class_header : 3 4
+disjoint_expression  : 13 14 38
+equivalent_expression : 7 8 9 10 11 12 17
+individuals_expression : 13 15 40
+ontology             : 2 4 0
+primitive_class_header : 1 2
+property_expression  : 18 20 22 23 25 26 29 31
+subclass_header      : 5 6 8 10 11 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . ontology
+    (1) ontology -> . primitive_class_header
+    (2) ontology -> . primitive_class_header ontology
+    (3) ontology -> . defined_class_header
+    (4) ontology -> . defined_class_header ontology
+    (5) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header
+    (6) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header class_expression
+    (7) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression
+    (8) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression
+    (10) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+    (11) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+
+    CLASS           shift and go to state 4
+
+    ontology                       shift and go to state 1
+    primitive_class_header         shift and go to state 2
+    defined_class_header           shift and go to state 3
+
+state 1
+
+    (0) S' -> ontology .
+
+
+
+state 2
+
+    (1) ontology -> primitive_class_header .
+    (2) ontology -> primitive_class_header . ontology
+    (1) ontology -> . primitive_class_header
+    (2) ontology -> . primitive_class_header ontology
+    (3) ontology -> . defined_class_header
+    (4) ontology -> . defined_class_header ontology
+    (5) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header
+    (6) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header class_expression
+    (7) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression
+    (8) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression
+    (10) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+    (11) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+
+    $end            reduce using rule 1 (ontology -> primitive_class_header .)
+    CLASS           shift and go to state 4
+
+    primitive_class_header         shift and go to state 2
+    ontology                       shift and go to state 5
+    defined_class_header           shift and go to state 3
+
+state 3
+
+    (3) ontology -> defined_class_header .
+    (4) ontology -> defined_class_header . ontology
+    (1) ontology -> . primitive_class_header
+    (2) ontology -> . primitive_class_header ontology
+    (3) ontology -> . defined_class_header
+    (4) ontology -> . defined_class_header ontology
+    (5) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header
+    (6) primitive_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header class_expression
+    (7) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression
+    (8) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression
+    (10) defined_class_header -> . CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+    (11) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> . CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+
+    $end            reduce using rule 3 (ontology -> defined_class_header .)
+    CLASS           shift and go to state 4
+
+    defined_class_header           shift and go to state 3
+    ontology                       shift and go to state 6
+    primitive_class_header         shift and go to state 2
+
+state 4
+
+    (5) primitive_class_header -> CLASS . CLASS_NAME SUBCLASS subclass_header
+    (6) primitive_class_header -> CLASS . CLASS_NAME SUBCLASS subclass_header class_expression
+    (7) defined_class_header -> CLASS . CLASS_NAME EQUIVALENT equivalent_expression
+    (8) defined_class_header -> CLASS . CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> CLASS . CLASS_NAME EQUIVALENT equivalent_expression class_expression
+    (10) defined_class_header -> CLASS . CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+    (11) defined_class_header -> CLASS . CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> CLASS . CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+
+    CLASS_NAME      shift and go to state 7
+
+
+state 5
+
+    (2) ontology -> primitive_class_header ontology .
+
+    $end            reduce using rule 2 (ontology -> primitive_class_header ontology .)
+
+
+state 6
+
+    (4) ontology -> defined_class_header ontology .
+
+    $end            reduce using rule 4 (ontology -> defined_class_header ontology .)
+
+
+state 7
+
+    (5) primitive_class_header -> CLASS CLASS_NAME . SUBCLASS subclass_header
+    (6) primitive_class_header -> CLASS CLASS_NAME . SUBCLASS subclass_header class_expression
+    (7) defined_class_header -> CLASS CLASS_NAME . EQUIVALENT equivalent_expression
+    (8) defined_class_header -> CLASS CLASS_NAME . EQUIVALENT equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> CLASS CLASS_NAME . EQUIVALENT equivalent_expression class_expression
+    (10) defined_class_header -> CLASS CLASS_NAME . EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression
+    (11) defined_class_header -> CLASS CLASS_NAME . SUBCLASS subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> CLASS CLASS_NAME . SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression
+
+    SUBCLASS        shift and go to state 8
+    EQUIVALENT      shift and go to state 9
+
+
+state 8
+
+    (5) primitive_class_header -> CLASS CLASS_NAME SUBCLASS . subclass_header
+    (6) primitive_class_header -> CLASS CLASS_NAME SUBCLASS . subclass_header class_expression
+    (11) defined_class_header -> CLASS CLASS_NAME SUBCLASS . subclass_header EQUIVALENT equivalent_expression
+    (12) defined_class_header -> CLASS CLASS_NAME SUBCLASS . subclass_header EQUIVALENT equivalent_expression class_expression
+    (19) subclass_header -> . CLASS_NAME
+    (20) subclass_header -> . CLASS_NAME COMMA property_expression
+
+    CLASS_NAME      shift and go to state 10
+
+    subclass_header                shift and go to state 11
+
+state 9
+
+    (7) defined_class_header -> CLASS CLASS_NAME EQUIVALENT . equivalent_expression
+    (8) defined_class_header -> CLASS CLASS_NAME EQUIVALENT . equivalent_expression SUBCLASS subclass_header
+    (9) defined_class_header -> CLASS CLASS_NAME EQUIVALENT . equivalent_expression class_expression
+    (10) defined_class_header -> CLASS CLASS_NAME EQUIVALENT . equivalent_expression SUBCLASS subclass_header class_expression
+    (16) equivalent_expression -> . CLASS_NAME
+    (17) equivalent_expression -> . CLASS_NAME COMMA equivalent_expression
+    (18) equivalent_expression -> . CLASS_NAME LOGICAL LPAR property_expression RPAR
+
+    CLASS_NAME      shift and go to state 12
+
+    equivalent_expression          shift and go to state 13
+
+state 10
+
+    (19) subclass_header -> CLASS_NAME .
+    (20) subclass_header -> CLASS_NAME . COMMA property_expression
+
+    EQUIVALENT      reduce using rule 19 (subclass_header -> CLASS_NAME .)
+    DISJOINT        reduce using rule 19 (subclass_header -> CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 19 (subclass_header -> CLASS_NAME .)
+    CLASS           reduce using rule 19 (subclass_header -> CLASS_NAME .)
+    $end            reduce using rule 19 (subclass_header -> CLASS_NAME .)
+    COMMA           shift and go to state 14
+
+
+state 11
+
+    (5) primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header .
+    (6) primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header . class_expression
+    (11) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header . EQUIVALENT equivalent_expression
+    (12) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header . EQUIVALENT equivalent_expression class_expression
+    (13) class_expression -> . DISJOINT disjoint_expression INDIVIDUALS individuals_expression
+    (14) class_expression -> . DISJOINT disjoint_expression
+    (15) class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS           reduce using rule 5 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header .)
+    $end            reduce using rule 5 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header .)
+    EQUIVALENT      shift and go to state 16
+    DISJOINT        shift and go to state 17
+    INDIVIDUALS     shift and go to state 18
+
+    class_expression               shift and go to state 15
+
+state 12
+
+    (16) equivalent_expression -> CLASS_NAME .
+    (17) equivalent_expression -> CLASS_NAME . COMMA equivalent_expression
+    (18) equivalent_expression -> CLASS_NAME . LOGICAL LPAR property_expression RPAR
+
+    SUBCLASS        reduce using rule 16 (equivalent_expression -> CLASS_NAME .)
+    DISJOINT        reduce using rule 16 (equivalent_expression -> CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 16 (equivalent_expression -> CLASS_NAME .)
+    CLASS           reduce using rule 16 (equivalent_expression -> CLASS_NAME .)
+    $end            reduce using rule 16 (equivalent_expression -> CLASS_NAME .)
+    COMMA           shift and go to state 19
+    LOGICAL         shift and go to state 20
+
+
+state 13
+
+    (7) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression .
+    (8) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression . SUBCLASS subclass_header
+    (9) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression . class_expression
+    (10) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression . SUBCLASS subclass_header class_expression
+    (13) class_expression -> . DISJOINT disjoint_expression INDIVIDUALS individuals_expression
+    (14) class_expression -> . DISJOINT disjoint_expression
+    (15) class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS           reduce using rule 7 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression .)
+    $end            reduce using rule 7 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression .)
+    SUBCLASS        shift and go to state 21
+    DISJOINT        shift and go to state 17
+    INDIVIDUALS     shift and go to state 18
+
+    class_expression               shift and go to state 22
+
+state 14
+
+    (20) subclass_header -> CLASS_NAME COMMA . property_expression
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 23
+
+state 15
+
+    (6) primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header class_expression .
+
+    CLASS           reduce using rule 6 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header class_expression .)
+    $end            reduce using rule 6 (primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header class_expression .)
+
+
+state 16
+
+    (11) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT . equivalent_expression
+    (12) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT . equivalent_expression class_expression
+    (16) equivalent_expression -> . CLASS_NAME
+    (17) equivalent_expression -> . CLASS_NAME COMMA equivalent_expression
+    (18) equivalent_expression -> . CLASS_NAME LOGICAL LPAR property_expression RPAR
+
+    CLASS_NAME      shift and go to state 12
+
+    equivalent_expression          shift and go to state 26
+
+state 17
+
+    (13) class_expression -> DISJOINT . disjoint_expression INDIVIDUALS individuals_expression
+    (14) class_expression -> DISJOINT . disjoint_expression
+    (37) disjoint_expression -> . CLASS_NAME
+    (38) disjoint_expression -> . CLASS_NAME COMMA disjoint_expression
+
+    CLASS_NAME      shift and go to state 28
+
+    disjoint_expression            shift and go to state 27
+
+state 18
+
+    (15) class_expression -> INDIVIDUALS . individuals_expression
+    (39) individuals_expression -> . INDIVIDUAL_NAME
+    (40) individuals_expression -> . INDIVIDUAL_NAME COMMA individuals_expression
+
+    INDIVIDUAL_NAME shift and go to state 30
+
+    individuals_expression         shift and go to state 29
+
+state 19
+
+    (17) equivalent_expression -> CLASS_NAME COMMA . equivalent_expression
+    (16) equivalent_expression -> . CLASS_NAME
+    (17) equivalent_expression -> . CLASS_NAME COMMA equivalent_expression
+    (18) equivalent_expression -> . CLASS_NAME LOGICAL LPAR property_expression RPAR
+
+    CLASS_NAME      shift and go to state 12
+
+    equivalent_expression          shift and go to state 31
+
+state 20
+
+    (18) equivalent_expression -> CLASS_NAME LOGICAL . LPAR property_expression RPAR
+
+    LPAR            shift and go to state 32
+
+
+state 21
+
+    (8) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS . subclass_header
+    (10) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS . subclass_header class_expression
+    (19) subclass_header -> . CLASS_NAME
+    (20) subclass_header -> . CLASS_NAME COMMA property_expression
+
+    CLASS_NAME      shift and go to state 10
+
+    subclass_header                shift and go to state 33
+
+state 22
+
+    (9) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression .
+
+    CLASS           reduce using rule 9 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression .)
+    $end            reduce using rule 9 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression .)
+
+
+state 23
+
+    (20) subclass_header -> CLASS_NAME COMMA property_expression .
+
+    EQUIVALENT      reduce using rule 20 (subclass_header -> CLASS_NAME COMMA property_expression .)
+    DISJOINT        reduce using rule 20 (subclass_header -> CLASS_NAME COMMA property_expression .)
+    INDIVIDUALS     reduce using rule 20 (subclass_header -> CLASS_NAME COMMA property_expression .)
+    CLASS           reduce using rule 20 (subclass_header -> CLASS_NAME COMMA property_expression .)
+    $end            reduce using rule 20 (subclass_header -> CLASS_NAME COMMA property_expression .)
+
+
+state 24
+
+    (21) property_expression -> PROPRIETY . SOME CLASS_NAME
+    (22) property_expression -> PROPRIETY . SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> PROPRIETY . SOME LPAR property_expression RPAR
+    (27) property_expression -> PROPRIETY . QUANTIFIER CLASS_NAME
+    (28) property_expression -> PROPRIETY . QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> PROPRIETY . QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (32) property_expression -> PROPRIETY . ONLY CLASS_NAME
+    (33) property_expression -> PROPRIETY . ONLY LPAR closure_classes RPAR
+
+    SOME            shift and go to state 34
+    QUANTIFIER      shift and go to state 35
+    ONLY            shift and go to state 36
+
+
+state 25
+
+    (24) property_expression -> LPAR . PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> LPAR . PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> LPAR . PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (30) property_expression -> LPAR . PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> LPAR . PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+
+    PROPRIETY       shift and go to state 37
+
+
+state 26
+
+    (11) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression .
+    (12) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression . class_expression
+    (13) class_expression -> . DISJOINT disjoint_expression INDIVIDUALS individuals_expression
+    (14) class_expression -> . DISJOINT disjoint_expression
+    (15) class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS           reduce using rule 11 (defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression .)
+    $end            reduce using rule 11 (defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression .)
+    DISJOINT        shift and go to state 17
+    INDIVIDUALS     shift and go to state 18
+
+    class_expression               shift and go to state 38
+
+state 27
+
+    (13) class_expression -> DISJOINT disjoint_expression . INDIVIDUALS individuals_expression
+    (14) class_expression -> DISJOINT disjoint_expression .
+
+    INDIVIDUALS     shift and go to state 39
+    CLASS           reduce using rule 14 (class_expression -> DISJOINT disjoint_expression .)
+    $end            reduce using rule 14 (class_expression -> DISJOINT disjoint_expression .)
+
+
+state 28
+
+    (37) disjoint_expression -> CLASS_NAME .
+    (38) disjoint_expression -> CLASS_NAME . COMMA disjoint_expression
+
+    INDIVIDUALS     reduce using rule 37 (disjoint_expression -> CLASS_NAME .)
+    CLASS           reduce using rule 37 (disjoint_expression -> CLASS_NAME .)
+    $end            reduce using rule 37 (disjoint_expression -> CLASS_NAME .)
+    COMMA           shift and go to state 40
+
+
+state 29
+
+    (15) class_expression -> INDIVIDUALS individuals_expression .
+
+    CLASS           reduce using rule 15 (class_expression -> INDIVIDUALS individuals_expression .)
+    $end            reduce using rule 15 (class_expression -> INDIVIDUALS individuals_expression .)
+
+
+state 30
+
+    (39) individuals_expression -> INDIVIDUAL_NAME .
+    (40) individuals_expression -> INDIVIDUAL_NAME . COMMA individuals_expression
+
+    CLASS           reduce using rule 39 (individuals_expression -> INDIVIDUAL_NAME .)
+    $end            reduce using rule 39 (individuals_expression -> INDIVIDUAL_NAME .)
+    COMMA           shift and go to state 41
+
+
+state 31
+
+    (17) equivalent_expression -> CLASS_NAME COMMA equivalent_expression .
+
+    SUBCLASS        reduce using rule 17 (equivalent_expression -> CLASS_NAME COMMA equivalent_expression .)
+    DISJOINT        reduce using rule 17 (equivalent_expression -> CLASS_NAME COMMA equivalent_expression .)
+    INDIVIDUALS     reduce using rule 17 (equivalent_expression -> CLASS_NAME COMMA equivalent_expression .)
+    CLASS           reduce using rule 17 (equivalent_expression -> CLASS_NAME COMMA equivalent_expression .)
+    $end            reduce using rule 17 (equivalent_expression -> CLASS_NAME COMMA equivalent_expression .)
+
+
+state 32
+
+    (18) equivalent_expression -> CLASS_NAME LOGICAL LPAR . property_expression RPAR
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 42
+
+state 33
+
+    (8) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header .
+    (10) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header . class_expression
+    (13) class_expression -> . DISJOINT disjoint_expression INDIVIDUALS individuals_expression
+    (14) class_expression -> . DISJOINT disjoint_expression
+    (15) class_expression -> . INDIVIDUALS individuals_expression
+
+    CLASS           reduce using rule 8 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header .)
+    $end            reduce using rule 8 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header .)
+    DISJOINT        shift and go to state 17
+    INDIVIDUALS     shift and go to state 18
+
+    class_expression               shift and go to state 43
+
+state 34
+
+    (21) property_expression -> PROPRIETY SOME . CLASS_NAME
+    (22) property_expression -> PROPRIETY SOME . CLASS_NAME COMMA property_expression
+    (23) property_expression -> PROPRIETY SOME . LPAR property_expression RPAR
+
+    CLASS_NAME      shift and go to state 44
+    LPAR            shift and go to state 45
+
+
+state 35
+
+    (27) property_expression -> PROPRIETY QUANTIFIER . CLASS_NAME
+    (28) property_expression -> PROPRIETY QUANTIFIER . NUMBER CLASS_NAME
+    (29) property_expression -> PROPRIETY QUANTIFIER . NUMBER CLASS_NAME COMMA property_expression
+
+    CLASS_NAME      shift and go to state 46
+    NUMBER          shift and go to state 47
+
+
+state 36
+
+    (32) property_expression -> PROPRIETY ONLY . CLASS_NAME
+    (33) property_expression -> PROPRIETY ONLY . LPAR closure_classes RPAR
+
+    CLASS_NAME      shift and go to state 48
+    LPAR            shift and go to state 49
+
+
+state 37
+
+    (24) property_expression -> LPAR PROPRIETY . SOME CLASS_NAME RPAR
+    (25) property_expression -> LPAR PROPRIETY . SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> LPAR PROPRIETY . SOME LPAR property_expression RPAR RPAR
+    (30) property_expression -> LPAR PROPRIETY . QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> LPAR PROPRIETY . QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+
+    SOME            shift and go to state 50
+    QUANTIFIER      shift and go to state 51
+
+
+state 38
+
+    (12) defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression .
+
+    CLASS           reduce using rule 12 (defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression .)
+    $end            reduce using rule 12 (defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression .)
+
+
+state 39
+
+    (13) class_expression -> DISJOINT disjoint_expression INDIVIDUALS . individuals_expression
+    (39) individuals_expression -> . INDIVIDUAL_NAME
+    (40) individuals_expression -> . INDIVIDUAL_NAME COMMA individuals_expression
+
+    INDIVIDUAL_NAME shift and go to state 30
+
+    individuals_expression         shift and go to state 52
+
+state 40
+
+    (38) disjoint_expression -> CLASS_NAME COMMA . disjoint_expression
+    (37) disjoint_expression -> . CLASS_NAME
+    (38) disjoint_expression -> . CLASS_NAME COMMA disjoint_expression
+
+    CLASS_NAME      shift and go to state 28
+
+    disjoint_expression            shift and go to state 53
+
+state 41
+
+    (40) individuals_expression -> INDIVIDUAL_NAME COMMA . individuals_expression
+    (39) individuals_expression -> . INDIVIDUAL_NAME
+    (40) individuals_expression -> . INDIVIDUAL_NAME COMMA individuals_expression
+
+    INDIVIDUAL_NAME shift and go to state 30
+
+    individuals_expression         shift and go to state 54
+
+state 42
+
+    (18) equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression . RPAR
+
+    RPAR            shift and go to state 55
+
+
+state 43
+
+    (10) defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression .
+
+    CLASS           reduce using rule 10 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression .)
+    $end            reduce using rule 10 (defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression .)
+
+
+state 44
+
+    (21) property_expression -> PROPRIETY SOME CLASS_NAME .
+    (22) property_expression -> PROPRIETY SOME CLASS_NAME . COMMA property_expression
+
+    EQUIVALENT      reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    DISJOINT        reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    CLASS           reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    $end            reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    RPAR            reduce using rule 21 (property_expression -> PROPRIETY SOME CLASS_NAME .)
+    COMMA           shift and go to state 56
+
+
+state 45
+
+    (23) property_expression -> PROPRIETY SOME LPAR . property_expression RPAR
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 57
+
+state 46
+
+    (27) property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .
+
+    EQUIVALENT      reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+    DISJOINT        reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+    CLASS           reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+    $end            reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+    RPAR            reduce using rule 27 (property_expression -> PROPRIETY QUANTIFIER CLASS_NAME .)
+
+
+state 47
+
+    (28) property_expression -> PROPRIETY QUANTIFIER NUMBER . CLASS_NAME
+    (29) property_expression -> PROPRIETY QUANTIFIER NUMBER . CLASS_NAME COMMA property_expression
+
+    CLASS_NAME      shift and go to state 58
+
+
+state 48
+
+    (32) property_expression -> PROPRIETY ONLY CLASS_NAME .
+
+    EQUIVALENT      reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+    DISJOINT        reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+    CLASS           reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+    $end            reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+    RPAR            reduce using rule 32 (property_expression -> PROPRIETY ONLY CLASS_NAME .)
+
+
+state 49
+
+    (33) property_expression -> PROPRIETY ONLY LPAR . closure_classes RPAR
+    (34) closure_classes -> . CLASS_NAME
+    (35) closure_classes -> . CLASS_NAME LOGICAL closure_classes
+    (36) closure_classes -> . CLASS_NAME COMMA closure_classes
+
+    CLASS_NAME      shift and go to state 60
+
+    closure_classes                shift and go to state 59
+
+state 50
+
+    (24) property_expression -> LPAR PROPRIETY SOME . CLASS_NAME RPAR
+    (25) property_expression -> LPAR PROPRIETY SOME . CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> LPAR PROPRIETY SOME . LPAR property_expression RPAR RPAR
+
+    CLASS_NAME      shift and go to state 62
+    LPAR            shift and go to state 61
+
+
+state 51
+
+    (30) property_expression -> LPAR PROPRIETY QUANTIFIER . NUMBER CLASS_NAME RPAR
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER . NUMBER CLASS_NAME RPAR LOGICAL property_expression
+
+    NUMBER          shift and go to state 63
+
+
+state 52
+
+    (13) class_expression -> DISJOINT disjoint_expression INDIVIDUALS individuals_expression .
+
+    CLASS           reduce using rule 13 (class_expression -> DISJOINT disjoint_expression INDIVIDUALS individuals_expression .)
+    $end            reduce using rule 13 (class_expression -> DISJOINT disjoint_expression INDIVIDUALS individuals_expression .)
+
+
+state 53
+
+    (38) disjoint_expression -> CLASS_NAME COMMA disjoint_expression .
+
+    INDIVIDUALS     reduce using rule 38 (disjoint_expression -> CLASS_NAME COMMA disjoint_expression .)
+    CLASS           reduce using rule 38 (disjoint_expression -> CLASS_NAME COMMA disjoint_expression .)
+    $end            reduce using rule 38 (disjoint_expression -> CLASS_NAME COMMA disjoint_expression .)
+
+
+state 54
+
+    (40) individuals_expression -> INDIVIDUAL_NAME COMMA individuals_expression .
+
+    CLASS           reduce using rule 40 (individuals_expression -> INDIVIDUAL_NAME COMMA individuals_expression .)
+    $end            reduce using rule 40 (individuals_expression -> INDIVIDUAL_NAME COMMA individuals_expression .)
+
+
+state 55
+
+    (18) equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .
+
+    SUBCLASS        reduce using rule 18 (equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .)
+    DISJOINT        reduce using rule 18 (equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .)
+    INDIVIDUALS     reduce using rule 18 (equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .)
+    CLASS           reduce using rule 18 (equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .)
+    $end            reduce using rule 18 (equivalent_expression -> CLASS_NAME LOGICAL LPAR property_expression RPAR .)
+
+
+state 56
+
+    (22) property_expression -> PROPRIETY SOME CLASS_NAME COMMA . property_expression
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 64
+
+state 57
+
+    (23) property_expression -> PROPRIETY SOME LPAR property_expression . RPAR
+
+    RPAR            shift and go to state 65
+
+
+state 58
+
+    (28) property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .
+    (29) property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME . COMMA property_expression
+
+    EQUIVALENT      reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    DISJOINT        reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    INDIVIDUALS     reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    CLASS           reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    $end            reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    RPAR            reduce using rule 28 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME .)
+    COMMA           shift and go to state 66
+
+
+state 59
+
+    (33) property_expression -> PROPRIETY ONLY LPAR closure_classes . RPAR
+
+    RPAR            shift and go to state 67
+
+
+state 60
+
+    (34) closure_classes -> CLASS_NAME .
+    (35) closure_classes -> CLASS_NAME . LOGICAL closure_classes
+    (36) closure_classes -> CLASS_NAME . COMMA closure_classes
+
+    RPAR            reduce using rule 34 (closure_classes -> CLASS_NAME .)
+    LOGICAL         shift and go to state 68
+    COMMA           shift and go to state 69
+
+
+state 61
+
+    (26) property_expression -> LPAR PROPRIETY SOME LPAR . property_expression RPAR RPAR
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 70
+
+state 62
+
+    (24) property_expression -> LPAR PROPRIETY SOME CLASS_NAME . RPAR
+    (25) property_expression -> LPAR PROPRIETY SOME CLASS_NAME . RPAR LOGICAL property_expression
+
+    RPAR            shift and go to state 71
+
+
+state 63
+
+    (30) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER . CLASS_NAME RPAR
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER . CLASS_NAME RPAR LOGICAL property_expression
+
+    CLASS_NAME      shift and go to state 72
+
+
+state 64
+
+    (22) property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .
+
+    EQUIVALENT      reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+    DISJOINT        reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+    INDIVIDUALS     reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+    CLASS           reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+    $end            reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+    RPAR            reduce using rule 22 (property_expression -> PROPRIETY SOME CLASS_NAME COMMA property_expression .)
+
+
+state 65
+
+    (23) property_expression -> PROPRIETY SOME LPAR property_expression RPAR .
+
+    EQUIVALENT      reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+    DISJOINT        reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+    INDIVIDUALS     reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+    CLASS           reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+    $end            reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+    RPAR            reduce using rule 23 (property_expression -> PROPRIETY SOME LPAR property_expression RPAR .)
+
+
+state 66
+
+    (29) property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA . property_expression
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 73
+
+state 67
+
+    (33) property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .
+
+    EQUIVALENT      reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+    DISJOINT        reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+    INDIVIDUALS     reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+    CLASS           reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+    $end            reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+    RPAR            reduce using rule 33 (property_expression -> PROPRIETY ONLY LPAR closure_classes RPAR .)
+
+
+state 68
+
+    (35) closure_classes -> CLASS_NAME LOGICAL . closure_classes
+    (34) closure_classes -> . CLASS_NAME
+    (35) closure_classes -> . CLASS_NAME LOGICAL closure_classes
+    (36) closure_classes -> . CLASS_NAME COMMA closure_classes
+
+    CLASS_NAME      shift and go to state 60
+
+    closure_classes                shift and go to state 74
+
+state 69
+
+    (36) closure_classes -> CLASS_NAME COMMA . closure_classes
+    (34) closure_classes -> . CLASS_NAME
+    (35) closure_classes -> . CLASS_NAME LOGICAL closure_classes
+    (36) closure_classes -> . CLASS_NAME COMMA closure_classes
+
+    CLASS_NAME      shift and go to state 60
+
+    closure_classes                shift and go to state 75
+
+state 70
+
+    (26) property_expression -> LPAR PROPRIETY SOME LPAR property_expression . RPAR RPAR
+
+    RPAR            shift and go to state 76
+
+
+state 71
+
+    (24) property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .
+    (25) property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR . LOGICAL property_expression
+
+    EQUIVALENT      reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    DISJOINT        reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    INDIVIDUALS     reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    CLASS           reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    $end            reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    RPAR            reduce using rule 24 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR .)
+    LOGICAL         shift and go to state 77
+
+
+state 72
+
+    (30) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME . RPAR
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME . RPAR LOGICAL property_expression
+
+    RPAR            shift and go to state 78
+
+
+state 73
+
+    (29) property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .
+
+    EQUIVALENT      reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+    DISJOINT        reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+    INDIVIDUALS     reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+    CLASS           reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+    $end            reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+    RPAR            reduce using rule 29 (property_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression .)
+
+
+state 74
+
+    (35) closure_classes -> CLASS_NAME LOGICAL closure_classes .
+
+    RPAR            reduce using rule 35 (closure_classes -> CLASS_NAME LOGICAL closure_classes .)
+
+
+state 75
+
+    (36) closure_classes -> CLASS_NAME COMMA closure_classes .
+
+    RPAR            reduce using rule 36 (closure_classes -> CLASS_NAME COMMA closure_classes .)
+
+
+state 76
+
+    (26) property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR . RPAR
+
+    RPAR            shift and go to state 79
+
+
+state 77
+
+    (25) property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL . property_expression
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 80
+
+state 78
+
+    (30) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR . LOGICAL property_expression
+
+    EQUIVALENT      reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    DISJOINT        reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    INDIVIDUALS     reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    CLASS           reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    $end            reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    RPAR            reduce using rule 30 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR .)
+    LOGICAL         shift and go to state 81
+
+
+state 79
+
+    (26) property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .
+
+    EQUIVALENT      reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+    DISJOINT        reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+    INDIVIDUALS     reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+    CLASS           reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+    $end            reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+    RPAR            reduce using rule 26 (property_expression -> LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR .)
+
+
+state 80
+
+    (25) property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .
+
+    EQUIVALENT      reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+    DISJOINT        reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+    INDIVIDUALS     reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+    CLASS           reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+    $end            reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+    RPAR            reduce using rule 25 (property_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression .)
+
+
+state 81
+
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL . property_expression
+    (21) property_expression -> . PROPRIETY SOME CLASS_NAME
+    (22) property_expression -> . PROPRIETY SOME CLASS_NAME COMMA property_expression
+    (23) property_expression -> . PROPRIETY SOME LPAR property_expression RPAR
+    (24) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR
+    (25) property_expression -> . LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+    (26) property_expression -> . LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
+    (27) property_expression -> . PROPRIETY QUANTIFIER CLASS_NAME
+    (28) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME
+    (29) property_expression -> . PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
+    (30) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
+    (31) property_expression -> . LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
+    (32) property_expression -> . PROPRIETY ONLY CLASS_NAME
+    (33) property_expression -> . PROPRIETY ONLY LPAR closure_classes RPAR
+
+    PROPRIETY       shift and go to state 24
+    LPAR            shift and go to state 25
+
+    property_expression            shift and go to state 82
+
+state 82
+
+    (31) property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .
+
+    EQUIVALENT      reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+    DISJOINT        reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+    INDIVIDUALS     reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+    CLASS           reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+    $end            reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+    RPAR            reduce using rule 31 (property_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression .)
+
