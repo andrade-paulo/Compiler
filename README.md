@@ -29,7 +29,7 @@ cd src
 ```
 2. Then, run the python file:
 ```
-python src/main.py
+python main.py
 ```
 
 ## User Interface
