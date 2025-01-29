@@ -1,37 +1,41 @@
-Log (29/01/2025 01:28:51)
-1 Valid Classes
+Log (29/01/2025 01:50:04)
+2 Valid Classes
 
-Class: MargheritaPizza
+Class: DigitalAsset
   Primary Class Type: Defined Class
-  Secondary Types: ['Nested Class', 'Closure Class']
-  Subclass Of: NamedPizza
-  Equivalent To: ['Pizza']
-  Disjoint With: []
-  Individous: []
+  Secondary Types: []
+  Subclass Of: Resource
+  Equivalent To: ['Coisinha']
+  Disjoint With: ['Uiui']
+  Individous: ['Conditional2', 'Somteste1']
   Properties: 
-    Property: hasSpiciness
-    Operator Token: value
-    Cardinality: None
-    Class Name: Hot
-
-    Property: hasTestando
+    Property: historicallyDependsOn
     Operator Token: some
     Cardinality: None
-    Class Name: __nesting__
+    Class Name: OfferorUnconditionalAgreement
 
-    Property: hasTopping
-    Operator Token: only
-    Cardinality: None
-    Class Name: MozzarellaTopping, TomatoTopping
 
-    Property: hasTopping
-    Operator Token: some
-    Cardinality: None
-    Class Name: TomatoTopping
+Class: ConditionalClaim
+  Primary Class Type: Primitive Class
+  Secondary Types: []
+  Subclass Of: IntrinsicMode
+  Equivalent To: []
+  Disjoint With: ['Eita']
+  Individous: ['DigitalAsset2', 'TesteSom1']
+  Properties: 
+    Property: externallyDependsOn
+    Operator Token: exactly
+    Cardinality: 1
+    Class Name: DataSupplier
 
-    Property: hasTopping
-    Operator Token: some
-    Cardinality: None
-    Class Name: MozzarellaTopping
+    Property: inheresIn
+    Operator Token: exactly
+    Cardinality: 1
+    Class Name: Teste
+
+    Property: historicallyDependsOn
+    Operator Token: min
+    Cardinality: 1
+    Class Name: MetadataRetrival
 
 
