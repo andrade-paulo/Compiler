@@ -1,0 +1,17 @@
+Line - Token - Classification
+1 - Class: - CLASS
+1 - MargheritaPizza - CLASS_NAME
+3 - SubClassOf: - SUBCLASS
+4 - NamedPizza - CLASS_NAME
+4 - , - COMMA
+5 - hasTopping - PROPRIETY
+5 - some - SOME
+5 - MozzarellaTopping - CLASS_NAME
+5 - , - COMMA
+6 - hasTopping - PROPRIETY
+6 - only - ONLY
+6 - ( - LPAR
+6 - MozzarellaTopping - CLASS_NAME
+6 - or - LOGICAL
+6 - TomatoTopping - CLASS_NAME
+6 - ) - RPAR

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ontologyALL BEQ BIG CLASS CLASS_NAME COMMA DISJOINT EQUIVALENT ID INDIVIDUALS INDIVIDUAL_NAME LBRACKET LCURLY LEQ LESS LOGICAL LPAR NAMESPACE NUMBER ONLY PROPRIETY QUANTIFIER RBRACKET RCURLY RPAR SOME SUBCLASSontology : primitive_class_header\n                    | primitive_class_header ontologyprimitive_class_header : CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression\n                                  | CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_headerprimitive_class_expression : DISJOINT disjoint_expression primitive_class_expression\n                                      | INDIVIDUALS individuals_expression primitive_class_expression\n                                      | DISJOINT disjoint_expression\n                                      | INDIVIDUALS individuals_expressionsubclass_header : CLASS_NAME\n                           | CLASS_NAME COMMA subclass_expressionsubclass_expression : PROPRIETY SOME CLASS_NAME\n                               | PROPRIETY ONLY CLASS_NAME\n                               | subclass_expression LOGICAL subclass_expression\n                               | PROPRIETY QUANTIFIER NUMBER CLASS_NAME\n                               | LPAR subclass_expression RPAR\n                               | subclass_expression COMMA subclass_expressiondisjoint_expression : CLASS_NAME\n                               | disjoint_expression COMMA disjoint_expressionindividuals_expression : INDIVIDUAL_NAME'
+_lr_signature = 'ontologyALL BEQ BIG CLASS CLASS_NAME COMMA DISJOINT EQUIVALENT ID INDIVIDUALS INDIVIDUAL_NAME LBRACKET LCURLY LEQ LESS LOGICAL LPAR NAMESPACE NUMBER ONLY PROPRIETY QUANTIFIER RBRACKET RCURLY RPAR SOME SUBCLASSontology : primitive_class_header\n                    | primitive_class_header ontology\n                    | defined_class_header\n                    | defined_class_header ontologyprimitive_class_header : CLASS CLASS_NAME SUBCLASS subclass_header \n                                  | CLASS CLASS_NAME SUBCLASS subclass_header class_expressiondefined_class_header : CLASS CLASS_NAME EQUIVALENT equivalent_expression\n                                | CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header\n                                | CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression\n                                | CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expressiondefined_class_header : CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression\n                                | CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expressionclass_expression : DISJOINT disjoint_expression INDIVIDUALS individuals_expressionclass_expression : DISJOINT disjoint_expression\n                            | INDIVIDUALS individuals_expressionequivalent_expression : CLASS_NAME\n                                 | CLASS_NAME COMMA equivalent_expressionsubclass_header : CLASS_NAME\n                           | CLASS_NAME COMMA subclass_expressionsubclass_expression : PROPRIETY SOME CLASS_NAME \n                               | PROPRIETY SOME CLASS_NAME COMMA subclass_expression\n                               | LPAR PROPRIETY SOME CLASS_NAME RPAR\n                               | LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL subclass_expression\n\n                               | PROPRIETY QUANTIFIER NUMBER CLASS_NAME\n                               | PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA subclass_expression\n                               | LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR\n                               | LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL subclass_expression\n                               \n                               | PROPRIETY ONLY CLASS_NAME\n                               | PROPRIETY ONLY LPAR closure_classes RPARclosure_classes : CLASS_NAME\n                           | CLASS_NAME LOGICAL closure_classes\n                           | CLASS_NAME COMMA closure_classesdisjoint_expression : CLASS_NAME\n                               | CLASS_NAME COMMA disjoint_expressionindividuals_expression : INDIVIDUAL_NAME\n                                  | INDIVIDUAL_NAME COMMA individuals_expression'
     
-_lr_action_items = {'CLASS':([0,2,7,13,14,15,16,17,18,19,22,24,31,32,33,34,35,37,38,],[3,3,-9,-3,-4,-7,-17,-8,-19,-10,-5,-6,-18,-16,-13,-11,-12,-15,-14,]),'$end':([1,2,4,7,13,14,15,16,17,18,19,22,24,31,32,33,34,35,37,38,],[0,-1,-2,-9,-3,-4,-7,-17,-8,-19,-10,-5,-6,-18,-16,-13,-11,-12,-15,-14,]),'CLASS_NAME':([3,6,9,10,15,16,17,18,22,23,24,27,28,31,36,],[5,7,7,16,-7,-17,-8,-19,-5,16,-6,34,35,-18,38,]),'SUBCLASS':([5,],[6,]),'DISJOINT':([6,7,8,15,16,17,18,19,31,32,33,34,35,37,38,],[10,-9,10,10,-17,10,-19,-10,-18,-16,-13,-11,-12,-15,-14,]),'INDIVIDUALS':([6,7,8,15,16,17,18,19,31,32,33,34,35,37,38,],[11,-9,11,11,-17,11,-19,-10,-18,-16,-13,-11,-12,-15,-14,]),'COMMA':([7,15,16,19,30,31,32,33,34,35,37,38,],[12,23,-17,25,25,23,25,25,-11,-12,-15,-14,]),'INDIVIDUAL_NAME':([11,],[18,]),'PROPRIETY':([12,21,25,26,],[20,20,20,20,]),'LPAR':([12,21,25,26,],[21,21,21,21,]),'LOGICAL':([19,30,32,33,34,35,37,38,],[26,26,26,26,-11,-12,-15,-14,]),'SOME':([20,],[27,]),'ONLY':([20,],[28,]),'QUANTIFIER':([20,],[29,]),'NUMBER':([29,],[36,]),'RPAR':([30,32,33,34,35,37,38,],[37,-16,-13,-11,-12,-15,-14,]),}
+_lr_action_items = {'CLASS':([0,2,3,10,11,12,13,15,21,22,25,26,27,28,29,30,31,36,40,41,43,47,48,49,51,56,58,61,63,67,68,70,],[4,4,4,-18,-5,-16,-7,-6,-9,-19,-11,-14,-33,-15,-35,-17,-8,-12,-10,-20,-28,-13,-34,-36,-24,-21,-29,-22,-25,-26,-23,-27,]),'$end':([1,2,3,5,6,10,11,12,13,15,21,22,25,26,27,28,29,30,31,36,40,41,43,47,48,49,51,56,58,61,63,67,68,70,],[0,-1,-3,-2,-4,-18,-5,-16,-7,-6,-9,-19,-11,-14,-33,-15,-35,-17,-8,-12,-10,-20,-28,-13,-34,-36,-24,-21,-29,-22,-25,-26,-23,-27,]),'CLASS_NAME':([4,8,9,16,17,19,20,32,34,38,42,44,45,55,59,60,],[7,10,12,12,27,12,10,41,43,27,51,53,54,62,53,53,]),'SUBCLASS':([7,12,13,30,],[8,-16,20,-17,]),'EQUIVALENT':([7,10,11,22,41,43,51,56,58,61,63,67,68,70,],[9,-18,16,-19,-20,-28,-24,-21,-29,-22,-25,-26,-23,-27,]),'DISJOINT':([10,11,12,13,22,25,30,31,41,43,51,56,58,61,63,67,68,70,],[-18,17,-16,17,-19,17,-17,17,-20,-28,-24,-21,-29,-22,-25,-26,-23,-27,]),'INDIVIDUALS':([10,11,12,13,22,25,26,27,30,31,41,43,48,51,56,58,61,63,67,68,70,],[-18,18,-16,18,-19,18,37,-33,-17,18,-20,-28,-34,-24,-21,-29,-22,-25,-26,-23,-27,]),'COMMA':([10,12,27,29,41,51,53,],[14,19,38,39,50,57,60,]),'PROPRIETY':([14,24,50,57,66,69,],[23,35,23,23,23,23,]),'LPAR':([14,34,50,57,66,69,],[24,44,24,24,24,24,]),'INDIVIDUAL_NAME':([18,37,39,],[29,29,29,]),'SOME':([23,35,],[32,45,]),'QUANTIFIER':([23,35,],[33,46,]),'ONLY':([23,],[34,]),'NUMBER':([33,46,],[42,55,]),'RPAR':([52,53,54,62,64,65,],[58,-30,61,67,-31,-32,]),'LOGICAL':([53,61,67,],[59,66,69,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'ontology':([0,2,],[1,4,]),'primitive_class_header':([0,2,],[2,2,]),'subclass_header':([6,9,],[8,14,]),'primitive_class_expression':([6,8,15,17,],[9,13,22,24,]),'disjoint_expression':([10,23,],[15,31,]),'individuals_expression':([11,],[17,]),'subclass_expression':([12,21,25,26,],[19,30,32,33,]),}
+_lr_goto_items = {'ontology':([0,2,3,],[1,5,6,]),'primitive_class_header':([0,2,3,],[2,2,2,]),'defined_class_header':([0,2,3,],[3,3,3,]),'subclass_header':([8,20,],[11,31,]),'equivalent_expression':([9,16,19,],[13,25,30,]),'class_expression':([11,13,25,31,],[15,21,36,40,]),'subclass_expression':([14,50,57,66,69,],[22,56,63,68,70,]),'disjoint_expression':([17,38,],[26,48,]),'individuals_expression':([18,37,39,],[28,47,49,]),'closure_classes':([44,59,60,],[52,64,65,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,23 +27,40 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> ontology","S'",1,None,None,None),
-  ('ontology -> primitive_class_header','ontology',1,'p_ontology','SyntacticAnalyser.py',13),
-  ('ontology -> primitive_class_header ontology','ontology',2,'p_ontology','SyntacticAnalyser.py',14),
-  ('primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header primitive_class_expression','primitive_class_header',5,'p_primitive_class_header','SyntacticAnalyser.py',19),
-  ('primitive_class_header -> CLASS CLASS_NAME SUBCLASS primitive_class_expression subclass_header','primitive_class_header',5,'p_primitive_class_header','SyntacticAnalyser.py',20),
-  ('primitive_class_expression -> DISJOINT disjoint_expression primitive_class_expression','primitive_class_expression',3,'p_primitive_class_expression','SyntacticAnalyser.py',24),
-  ('primitive_class_expression -> INDIVIDUALS individuals_expression primitive_class_expression','primitive_class_expression',3,'p_primitive_class_expression','SyntacticAnalyser.py',25),
-  ('primitive_class_expression -> DISJOINT disjoint_expression','primitive_class_expression',2,'p_primitive_class_expression','SyntacticAnalyser.py',26),
-  ('primitive_class_expression -> INDIVIDUALS individuals_expression','primitive_class_expression',2,'p_primitive_class_expression','SyntacticAnalyser.py',27),
-  ('subclass_header -> CLASS_NAME','subclass_header',1,'p_subclass_header','SyntacticAnalyser.py',32),
-  ('subclass_header -> CLASS_NAME COMMA subclass_expression','subclass_header',3,'p_subclass_header','SyntacticAnalyser.py',33),
-  ('subclass_expression -> PROPRIETY SOME CLASS_NAME','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',37),
-  ('subclass_expression -> PROPRIETY ONLY CLASS_NAME','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',38),
-  ('subclass_expression -> subclass_expression LOGICAL subclass_expression','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',39),
-  ('subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME','subclass_expression',4,'p_subclass_expression','SyntacticAnalyser.py',40),
-  ('subclass_expression -> LPAR subclass_expression RPAR','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',41),
-  ('subclass_expression -> subclass_expression COMMA subclass_expression','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',42),
-  ('disjoint_expression -> CLASS_NAME','disjoint_expression',1,'p_disjoint_expression','SyntacticAnalyser.py',46),
-  ('disjoint_expression -> disjoint_expression COMMA disjoint_expression','disjoint_expression',3,'p_disjoint_expression','SyntacticAnalyser.py',47),
-  ('individuals_expression -> INDIVIDUAL_NAME','individuals_expression',1,'p_individuals_expression','SyntacticAnalyser.py',52),
+  ('ontology -> primitive_class_header','ontology',1,'p_ontology','SyntacticAnalyser.py',26),
+  ('ontology -> primitive_class_header ontology','ontology',2,'p_ontology','SyntacticAnalyser.py',27),
+  ('ontology -> defined_class_header','ontology',1,'p_ontology','SyntacticAnalyser.py',28),
+  ('ontology -> defined_class_header ontology','ontology',2,'p_ontology','SyntacticAnalyser.py',29),
+  ('primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header','primitive_class_header',4,'p_primitive_class_header','SyntacticAnalyser.py',33),
+  ('primitive_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header class_expression','primitive_class_header',5,'p_primitive_class_header','SyntacticAnalyser.py',34),
+  ('defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression','defined_class_header',4,'p_defined_class_header','SyntacticAnalyser.py',46),
+  ('defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header','defined_class_header',6,'p_defined_class_header','SyntacticAnalyser.py',47),
+  ('defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression class_expression','defined_class_header',5,'p_defined_class_header','SyntacticAnalyser.py',48),
+  ('defined_class_header -> CLASS CLASS_NAME EQUIVALENT equivalent_expression SUBCLASS subclass_header class_expression','defined_class_header',7,'p_defined_class_header','SyntacticAnalyser.py',49),
+  ('defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression','defined_class_header',6,'p_defined_class_header_error','SyntacticAnalyser.py',61),
+  ('defined_class_header -> CLASS CLASS_NAME SUBCLASS subclass_header EQUIVALENT equivalent_expression class_expression','defined_class_header',7,'p_defined_class_header_error','SyntacticAnalyser.py',62),
+  ('class_expression -> DISJOINT disjoint_expression INDIVIDUALS individuals_expression','class_expression',4,'p_class_expression','SyntacticAnalyser.py',67),
+  ('class_expression -> DISJOINT disjoint_expression','class_expression',2,'p_class_expression_error','SyntacticAnalyser.py',70),
+  ('class_expression -> INDIVIDUALS individuals_expression','class_expression',2,'p_class_expression_error','SyntacticAnalyser.py',71),
+  ('equivalent_expression -> CLASS_NAME','equivalent_expression',1,'p_equivalent_expression','SyntacticAnalyser.py',76),
+  ('equivalent_expression -> CLASS_NAME COMMA equivalent_expression','equivalent_expression',3,'p_equivalent_expression','SyntacticAnalyser.py',77),
+  ('subclass_header -> CLASS_NAME','subclass_header',1,'p_subclass_header','SyntacticAnalyser.py',86),
+  ('subclass_header -> CLASS_NAME COMMA subclass_expression','subclass_header',3,'p_subclass_header','SyntacticAnalyser.py',87),
+  ('subclass_expression -> PROPRIETY SOME CLASS_NAME','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',96),
+  ('subclass_expression -> PROPRIETY SOME CLASS_NAME COMMA subclass_expression','subclass_expression',5,'p_subclass_expression','SyntacticAnalyser.py',97),
+  ('subclass_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR','subclass_expression',5,'p_subclass_expression','SyntacticAnalyser.py',98),
+  ('subclass_expression -> LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL subclass_expression','subclass_expression',7,'p_subclass_expression','SyntacticAnalyser.py',99),
+  ('subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME','subclass_expression',4,'p_subclass_expression','SyntacticAnalyser.py',101),
+  ('subclass_expression -> PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA subclass_expression','subclass_expression',6,'p_subclass_expression','SyntacticAnalyser.py',102),
+  ('subclass_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR','subclass_expression',6,'p_subclass_expression','SyntacticAnalyser.py',103),
+  ('subclass_expression -> LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL subclass_expression','subclass_expression',8,'p_subclass_expression','SyntacticAnalyser.py',104),
+  ('subclass_expression -> PROPRIETY ONLY CLASS_NAME','subclass_expression',3,'p_subclass_expression','SyntacticAnalyser.py',106),
+  ('subclass_expression -> PROPRIETY ONLY LPAR closure_classes RPAR','subclass_expression',5,'p_subclass_expression','SyntacticAnalyser.py',107),
+  ('closure_classes -> CLASS_NAME','closure_classes',1,'p_closure_classes','SyntacticAnalyser.py',131),
+  ('closure_classes -> CLASS_NAME LOGICAL closure_classes','closure_classes',3,'p_closure_classes','SyntacticAnalyser.py',132),
+  ('closure_classes -> CLASS_NAME COMMA closure_classes','closure_classes',3,'p_closure_classes','SyntacticAnalyser.py',133),
+  ('disjoint_expression -> CLASS_NAME','disjoint_expression',1,'p_disjoint_expression','SyntacticAnalyser.py',137),
+  ('disjoint_expression -> CLASS_NAME COMMA disjoint_expression','disjoint_expression',3,'p_disjoint_expression','SyntacticAnalyser.py',138),
+  ('individuals_expression -> INDIVIDUAL_NAME','individuals_expression',1,'p_individuals_expression','SyntacticAnalyser.py',147),
+  ('individuals_expression -> INDIVIDUAL_NAME COMMA individuals_expression','individuals_expression',3,'p_individuals_expression','SyntacticAnalyser.py',148),
 ]

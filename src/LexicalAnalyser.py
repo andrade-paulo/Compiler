@@ -1,6 +1,7 @@
 import SymbolTable as ST
 
 import os
+import re
 import ply.lex as lex
 
 from ply.lex import TOKEN
@@ -54,7 +55,7 @@ class LexicalAnalyser:
         return t
 
     def t_INDIVIDUAL_NAME(self, t: lex.LexToken) -> lex.LexToken:
-        r"[[A-Z][a-zA-Z_]*[0-9]+"
+        r"[A-Z][a-zA-Z_]*[0-9]+"
         return t
 
     def t_CLASS_NAME(self, t: lex.LexToken) -> lex.LexToken:
@@ -67,7 +68,7 @@ class LexicalAnalyser:
     
     
     def t_error(self, t: lex.LexToken) -> None:
-        print(f"Lexical Error: '{t.value}' on line {t.lineno}")
+        print(f"Lexical Error: '{re.split(" |\n", t.value)[0]}' on line {int(t.lineno / 2)}")
         t.lexer.skip(1)
 
 

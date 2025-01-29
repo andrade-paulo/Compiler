@@ -1,6 +1,22 @@
-ConditionalClaim - Class
- -> AmericanaHotPizza1 - INDIVIDUALS
- -> IntrinsicMode - SUPCLASS
-DigitalAsset - Class
- -> Coisa - DISJOINT
- -> Resource - SUPCLASS
+Log (29/01/2025 01:06:46)
+1 Valid Classes
+
+Class: MargheritaPizza
+  Primary Class Type: Primitive Class
+  Secondary Types: ['Closure Class']
+  Subclass Of: NamedPizza
+  Equivalent To: []
+  Disjoint With: []
+  Individous: []
+  Properties: 
+    Property: hasTopping
+    Operator Token: only
+    Cardinality: None
+    Class Name: MozzarellaTopping, TomatoTopping
+
+    Property: hasTopping
+    Operator Token: some
+    Cardinality: None
+    Class Name: MozzarellaTopping
+
+
