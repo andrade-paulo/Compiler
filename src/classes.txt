@@ -1,18 +1,33 @@
-Log (29/01/2025 01:06:46)
+Log (29/01/2025 01:28:51)
 1 Valid Classes
 
 Class: MargheritaPizza
-  Primary Class Type: Primitive Class
-  Secondary Types: ['Closure Class']
+  Primary Class Type: Defined Class
+  Secondary Types: ['Nested Class', 'Closure Class']
   Subclass Of: NamedPizza
-  Equivalent To: []
+  Equivalent To: ['Pizza']
   Disjoint With: []
   Individous: []
   Properties: 
+    Property: hasSpiciness
+    Operator Token: value
+    Cardinality: None
+    Class Name: Hot
+
+    Property: hasTestando
+    Operator Token: some
+    Cardinality: None
+    Class Name: __nesting__
+
     Property: hasTopping
     Operator Token: only
     Cardinality: None
     Class Name: MozzarellaTopping, TomatoTopping
+
+    Property: hasTopping
+    Operator Token: some
+    Cardinality: None
+    Class Name: TomatoTopping
 
     Property: hasTopping
     Operator Token: some

@@ -74,17 +74,21 @@ class SyntacticAnalyser:
 
     def p_equivalent_expression(self, p):
         """equivalent_expression : CLASS_NAME
-                                 | CLASS_NAME COMMA equivalent_expression"""
+                                 | CLASS_NAME COMMA equivalent_expression
+                                 | CLASS_NAME LOGICAL LPAR property_expression RPAR"""
         
         if "NEW_CLASS" not in self.classes_table.keys():
             self.classes_table["NEW_CLASS"] = CT.OntologyClass()
         
         self.classes_table["NEW_CLASS"].equivalent_to.append(p[1])
 
+        if "(" in p:
+            self.classes_table["NEW_CLASS"].secondary_types.append("Nested Class")
+
 
     def p_subclass_header(self, p):
         """subclass_header : CLASS_NAME
-                           | CLASS_NAME COMMA subclass_expression"""
+                           | CLASS_NAME COMMA property_expression"""
         
         if "NEW_CLASS" not in self.classes_table.keys():
             self.classes_table["NEW_CLASS"] = CT.OntologyClass()
@@ -100,16 +104,19 @@ class SyntacticAnalyser:
                         self.errors.append(f"Closure Error: There's an inconsistency on the closure of {prop.name}")
 
 
-    def p_subclass_expression(self, p):
-        """subclass_expression : PROPRIETY SOME CLASS_NAME 
-                               | PROPRIETY SOME CLASS_NAME COMMA subclass_expression
+    def p_property_expression(self, p):
+        """property_expression : PROPRIETY SOME CLASS_NAME 
+                               | PROPRIETY SOME CLASS_NAME COMMA property_expression
+                               | PROPRIETY SOME LPAR property_expression RPAR
                                | LPAR PROPRIETY SOME CLASS_NAME RPAR
-                               | LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL subclass_expression
+                               | LPAR PROPRIETY SOME CLASS_NAME RPAR LOGICAL property_expression
+                               | LPAR PROPRIETY SOME LPAR property_expression RPAR RPAR
 
+                               | PROPRIETY QUANTIFIER CLASS_NAME
                                | PROPRIETY QUANTIFIER NUMBER CLASS_NAME
-                               | PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA subclass_expression
+                               | PROPRIETY QUANTIFIER NUMBER CLASS_NAME COMMA property_expression
                                | LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR
-                               | LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL subclass_expression
+                               | LPAR PROPRIETY QUANTIFIER NUMBER CLASS_NAME RPAR LOGICAL property_expression
                                
                                | PROPRIETY ONLY CLASS_NAME
                                | PROPRIETY ONLY LPAR closure_classes RPAR"""
@@ -118,12 +125,15 @@ class SyntacticAnalyser:
             self.classes_table["NEW_CLASS"] = CT.OntologyClass()
 
         if p[1] not in ['(', None]:
-            if p.slice[2].type == "QUANTIFIER":
+            if p.slice[3].type == "NUMBER":
                 self.classes_table["NEW_CLASS"].add_property(p[1], p[2], p[3], p[4])
             else:
-                if p[3] == '(':  # Skip (
-                    p[3] = ", ".join(p[4])  # p[4] is a list of classes
-                
+                if p[3] == '(':
+                    if p[2] == "only":
+                        p[3] = ", ".join(p[4])  # p[4] is a list of classes
+                    else:
+                        p[3] = "__nesting__"
+
                 self.classes_table["NEW_CLASS"].add_property(p[1], p[2], None, p[3])
         
         if p[2] == "only":

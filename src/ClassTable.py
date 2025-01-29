@@ -62,6 +62,7 @@ class OntologyClass:
         associated_classes = [prop.class_name for prop in self.properties if (prop.name == propertie and prop.operator_token != "only")]
 
         # If associated_classes has the same elements as classes_names, return True
+        print(associated_classes, classes_names)
         if set(associated_classes) == set(classes_names):
             return True
         
